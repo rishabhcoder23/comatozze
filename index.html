@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh's Video Player | Glass Morphism</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Rishabh's Video Player</title>
     <style>
         * {
             margin: 0;
@@ -12,120 +11,58 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #4CAF50;
-            --primary-dark: #388E3C;
-            --primary-light: #81C784;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            --text-primary: #ffffff;
-            --text-secondary: #e0e0e0;
-        }
-
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: var(--text-primary);
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(76, 175, 80, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 40% 40%, rgba(31, 38, 135, 0.1) 0%, transparent 40%);
-            z-index: -1;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            width: 100%;
+            max-width: 900px;
         }
 
-        /* Header Styles */
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: var(--glass-bg);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .header h1 {
-            color: var(--text-primary);
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .header h2 {
-            color: var(--text-secondary);
-            font-weight: 300;
-            font-size: 1.5rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
             letter-spacing: 2px;
         }
 
-        .header .badge {
-            display: inline-block;
-            background: rgba(255, 69, 0, 0.2);
-            color: #ff4500;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 69, 0, 0.3);
-        }
-
-        /* Video Container */
         .video-container {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
             position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .video-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
         video {
@@ -135,18 +72,15 @@
             border-radius: 15px;
         }
 
-        /* Custom Video Controls */
         .custom-controls {
             padding: 15px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
-        .custom-controls button {
+        .control-btn {
             background: transparent;
             border: none;
             color: white;
@@ -158,215 +92,180 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
         }
 
-        .custom-controls button:hover {
+        .control-btn:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.1);
         }
 
-        .custom-controls .play-btn {
-            background: var(--primary);
+        .play-btn {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
         }
 
-        .custom-controls .play-btn:hover {
-            background: var(--primary-dark);
+        .play-btn:hover {
+            background: linear-gradient(45deg, #00cc66, #00aadd);
         }
 
         .progress-container {
-            flex-grow: 1;
-            height: 8px;
+            flex: 1;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
+            border-radius: 3px;
             cursor: pointer;
+            overflow: hidden;
         }
 
         .progress-bar {
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(90deg, #00ff88, #00ccff);
             width: 0%;
-            border-radius: 4px;
-            transition: width 0.1s;
+            border-radius: 3px;
         }
 
         .time-display {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.7);
             min-width: 100px;
-            text-align: center;
+            font-family: monospace;
         }
 
         .volume-container {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .volume-slider {
             width: 80px;
-            height: 5px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
             cursor: pointer;
+            overflow: hidden;
         }
 
         .volume-level {
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(90deg, #00ff88, #00ccff);
             width: 80%;
             border-radius: 3px;
         }
 
-        /* Controls Container */
         .controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            padding: 20px;
         }
 
         .glass-btn {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-            padding: 12px 25px;
-            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            gap: 8px;
+            transition: all 0.3s;
         }
 
         .glass-btn:hover {
             background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .glass-btn i {
-            font-size: 1.1rem;
+            transform: translateY(-2px);
         }
 
         .glass-btn.primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(45deg, #00ff88, #00ccff);
             border: none;
+            font-weight: 600;
         }
 
-        .glass-btn.primary:hover {
-            background: linear-gradient(135deg, var(--primary-dark), #2E7D32);
-        }
-
-        /* Video Info */
-        .video-info {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 30px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .video-info h3 {
-            color: var(--primary-light);
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-
-        .video-info p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Stats */
-        .stats {
+        .info-bar {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            background: var(--glass-bg);
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 20px;
-            min-width: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+
+        .stat {
             text-align: center;
-            border: 1px solid var(--glass-border);
-            transition: transform 0.3s ease;
+            position: relative;
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .stat-card .number {
-            font-size: 2rem;
+        .stat .value {
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-primary);
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s;
         }
 
-        .stat-card .label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+        .stat .label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
             margin-top: 5px;
         }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+        .views-container {
+            position: relative;
+            display: inline-block;
         }
 
-        /* Responsive Design */
+        .views-change {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            font-size: 0.7rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeUp 1s ease-out;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .header h2 {
-                font-size: 1.2rem;
+                font-size: 1.8rem;
             }
             
             .custom-controls {
-                flex-direction: column;
+                flex-wrap: wrap;
                 gap: 10px;
             }
             
             .progress-container {
+                order: 3;
                 width: 100%;
+                margin-top: 5px;
             }
             
-            .controls {
+            .info-bar {
                 flex-direction: column;
-                align-items: center;
-            }
-            
-            .glass-btn {
-                width: 100%;
-                justify-content: center;
+                gap: 15px;
             }
         }
     </style>
@@ -375,8 +274,7 @@
     <div class="container">
         <div class="header">
             <h1>Rishabh Kumar Yadav</h1>
-            <h2>Comatozze Edit</h2>
-            <div class="badge">TRENDING NOW</div>
+            <h2>COMATOZZE EDIT</h2>
         </div>
         
         <div class="video-container">
@@ -386,20 +284,24 @@
             </video>
             
             <div class="custom-controls">
-                <button class="play-btn" id="playPauseBtn">
+                <button class="control-btn play-btn" id="playPauseBtn">
                     <i class="fas fa-play"></i>
                 </button>
+                
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                
                 <div class="progress-container" id="progressContainer">
                     <div class="progress-bar" id="progressBar"></div>
                 </div>
-                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                
                 <div class="volume-container">
-                    <button id="volumeBtn"><i class="fas fa-volume-up"></i></button>
+                    <button class="control-btn" id="volumeBtn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
                     <div class="volume-slider" id="volumeSlider">
                         <div class="volume-level" id="volumeLevel"></div>
                     </div>
                 </div>
-                <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
             </div>
         </div>
         
@@ -410,260 +312,254 @@
             <button class="glass-btn" id="pauseBtn">
                 <i class="fas fa-pause"></i> Pause
             </button>
-            <button class="glass-btn" id="restartBtn">
-                <i class="fas fa-redo"></i> Restart
-            </button>
-            <button class="glass-btn" id="muteBtn">
-                <i class="fas fa-volume-mute"></i> Mute
-            </button>
             <button class="glass-btn" id="speedBtn">
-                <i class="fas fa-tachometer-alt"></i> Speed: 1x
+                <i class="fas fa-tachometer-alt"></i> 1x
+            </button>
+            <button class="glass-btn" id="fullBtn">
+                <i class="fas fa-expand"></i> Full
             </button>
         </div>
         
-        <div class="stats">
-            <div class="stat-card">
-                <i class="fas fa-eye"></i>
-                <div class="number" id="viewCount">1,247</div>
-                <div class="label">Views</div>
+        <div class="info-bar">
+            <div class="stat">
+                <div class="views-container">
+                    <div class="value" id="views">1,247</div>
+                    <div class="views-change" id="viewsChange">+1</div>
+                </div>
+                <div class="label">VIEWS</div>
             </div>
-            <div class="stat-card">
-                <i class="fas fa-heart"></i>
-                <div class="number" id="likeCount">328</div>
-                <div class="label">Likes</div>
+            <div class="stat">
+                <div class="value" id="likes">324</div>
+                <div class="label">LIKES</div>
             </div>
-            <div class="stat-card">
-                <i class="fas fa-clock"></i>
-                <div class="number" id="duration">0:00</div>
-                <div class="label">Duration</div>
+            <div class="stat">
+                <div class="value" id="duration">0:00</div>
+                <div class="label">DURATION</div>
             </div>
-        </div>
-        
-        <div class="video-info">
-            <h3>About This Edit</h3>
-            <p>This is a high-energy edit by Rishabh Kumar Yadav featuring the latest trending transitions and effects. The "Comatozze Edit" showcases professional video editing skills with perfect synchronization to the music.</p>
-        </div>
-        
-        <div class="footer">
-            <p>Rishabh's Video Player | Glass Morphism Design | © 2023 All rights reserved</p>
         </div>
     </div>
 
     <script>
-        // Get video element and controls
+        // Get elements
         const video = document.getElementById('myVideo');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const playBtn = document.getElementById('playBtn');
         const pauseBtn = document.getElementById('pauseBtn');
-        const restartBtn = document.getElementById('restartBtn');
-        const muteBtn = document.getElementById('muteBtn');
-        const volumeBtn = document.getElementById('volumeBtn');
         const speedBtn = document.getElementById('speedBtn');
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const fullBtn = document.getElementById('fullBtn');
         const progressBar = document.getElementById('progressBar');
         const progressContainer = document.getElementById('progressContainer');
         const timeDisplay = document.getElementById('timeDisplay');
+        const volumeBtn = document.getElementById('volumeBtn');
         const volumeSlider = document.getElementById('volumeSlider');
         const volumeLevel = document.getElementById('volumeLevel');
-        const viewCount = document.getElementById('viewCount');
-        const likeCount = document.getElementById('likeCount');
-        const durationDisplay = document.getElementById('duration');
-        
-        // Video playback speeds
-        const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
-        let currentSpeedIndex = 2; // Start at 1x
-        
-        // Format time as MM:SS
+        const viewsEl = document.getElementById('views');
+        const viewsChangeEl = document.getElementById('viewsChange');
+        const likesEl = document.getElementById('likes');
+        const durationEl = document.getElementById('duration');
+
+        // State
+        let isPlaying = false;
+        const speeds = [0.5, 0.75, 1, 1.5, 2];
+        let speedIndex = 2;
+        let views = 1247;
+        let viewsInterval;
+
+        // Format time
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
-        
-        // Update progress bar and time display
+
+        // Format number with commas
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Update views with animation
+        function updateViews() {
+            // Random increase between 1-5 views
+            const increase = Math.floor(Math.random() * 5) + 1;
+            views += increase;
+            
+            // Update display with formatting
+            viewsEl.textContent = formatNumber(views);
+            
+            // Show +X animation
+            viewsChangeEl.textContent = `+${increase}`;
+            viewsChangeEl.style.animation = 'none';
+            void viewsChangeEl.offsetWidth; // Trigger reflow
+            viewsChangeEl.style.animation = 'fadeUp 1s ease-out';
+            
+            // Pulsate effect on views number
+            viewsEl.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                viewsEl.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Start auto views increment
+        function startViewsAutoIncrement() {
+            // Initial update
+            updateViews();
+            
+            // Set interval for random updates
+            viewsInterval = setInterval(() => {
+                // Random time between 3-8 seconds
+                const delay = Math.random() * 5000 + 3000;
+                
+                setTimeout(updateViews, delay);
+            }, 10000); // Check every 10 seconds for new updates
+        }
+
+        // Update progress
         function updateProgress() {
             if (!video.duration) return;
             
-            const progress = (video.currentTime / video.duration) * 100;
-            progressBar.style.width = `${progress}%`;
-            
+            const percent = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = `${percent}%`;
             timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
         }
-        
-        // Set progress when clicking on progress bar
+
+        // Set progress on click
         function setProgress(e) {
-            const width = this.clientWidth;
-            const clickX = e.offsetX;
-            const duration = video.duration;
-            
-            video.currentTime = (clickX / width) * duration;
+            const rect = progressContainer.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            video.currentTime = percent * video.duration;
         }
-        
+
         // Toggle play/pause
-        function togglePlayPause() {
+        function togglePlay() {
             if (video.paused) {
                 video.play();
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                playBtn.querySelector('i').className = 'fas fa-pause';
                 playBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+                isPlaying = true;
+                
+                // Increase views when video starts playing
+                if (Math.random() > 0.7) { // 30% chance
+                    setTimeout(updateViews, 1000);
+                }
             } else {
                 video.pause();
                 playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                playBtn.querySelector('i').className = 'fas fa-play';
                 playBtn.innerHTML = '<i class="fas fa-play"></i> Play';
+                isPlaying = false;
             }
         }
-        
+
         // Play video
         function playVideo() {
             video.play();
             playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            playBtn.querySelector('i').className = 'fas fa-pause';
             playBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+            isPlaying = true;
         }
-        
+
         // Pause video
         function pauseVideo() {
             video.pause();
             playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            playBtn.querySelector('i').className = 'fas fa-play';
             playBtn.innerHTML = '<i class="fas fa-play"></i> Play';
+            isPlaying = false;
         }
-        
-        // Restart video
-        function restartVideo() {
-            video.currentTime = 0;
-            video.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            playBtn.querySelector('i').className = 'fas fa-pause';
-            playBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
-        }
-        
+
         // Toggle mute
         function toggleMute() {
             video.muted = !video.muted;
-            muteBtn.innerHTML = video.muted ? 
-                '<i class="fas fa-volume-mute"></i> Unmute' : 
-                '<i class="fas fa-volume-up"></i> Mute';
-            volumeBtn.innerHTML = video.muted ? 
-                '<i class="fas fa-volume-mute"></i>' : 
-                '<i class="fas fa-volume-up"></i>';
+            const icon = video.muted ? 'fa-volume-mute' : 'fa-volume-up';
+            volumeBtn.innerHTML = `<i class="fas ${icon}"></i>`;
+            volumeLevel.style.width = video.muted ? '0%' : `${video.volume * 100}%`;
+        }
+
+        // Set volume
+        function setVolume(e) {
+            const rect = volumeSlider.getBoundingClientRect();
+            const percent = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
             
-            if (video.muted) {
-                volumeLevel.style.width = '0%';
-            } else {
-                volumeLevel.style.width = `${video.volume * 100}%`;
-            }
+            video.volume = percent;
+            video.muted = percent === 0;
+            volumeLevel.style.width = `${percent * 100}%`;
+            
+            const icon = percent === 0 ? 'fa-volume-mute' : 
+                         percent < 0.5 ? 'fa-volume-down' : 'fa-volume-up';
+            volumeBtn.innerHTML = `<i class="fas ${icon}"></i>`;
         }
-        
-        // Change playback speed
+
+        // Change speed
         function changeSpeed() {
-            currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
-            video.playbackRate = speeds[currentSpeedIndex];
-            speedBtn.innerHTML = `<i class="fas fa-tachometer-alt"></i> Speed: ${speeds[currentSpeedIndex]}x`;
+            speedIndex = (speedIndex + 1) % speeds.length;
+            video.playbackRate = speeds[speedIndex];
+            speedBtn.innerHTML = `<i class="fas fa-tachometer-alt"></i> ${speeds[speedIndex]}x`;
         }
-        
+
         // Toggle fullscreen
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
-                video.requestFullscreen().catch(err => {
-                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
-                });
-                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                video.requestFullscreen().catch(console.log);
+                fullBtn.innerHTML = '<i class="fas fa-compress"></i> Exit';
             } else {
                 document.exitFullscreen();
-                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                fullBtn.innerHTML = '<i class="fas fa-expand"></i> Full';
             }
         }
-        
-        // Set volume
-        function setVolume(e) {
-            const width = this.clientWidth;
-            const clickX = e.offsetX;
-            const volume = clickX / width;
-            
-            video.volume = volume;
-            video.muted = volume === 0;
-            
-            volumeLevel.style.width = `${volume * 100}%`;
-            
-            // Update volume icon
-            let iconClass = 'fa-volume-up';
-            if (volume === 0 || video.muted) {
-                iconClass = 'fa-volume-mute';
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Unmute';
-            } else if (volume < 0.5) {
-                iconClass = 'fa-volume-down';
-            }
-            
-            volumeBtn.innerHTML = `<i class="fas ${iconClass}"></i>`;
-            
-            if (!video.muted && volume > 0) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Mute';
-            }
-        }
-        
-        // Update video duration when metadata loads
+
+        // Like functionality
+        likesEl.addEventListener('click', function() {
+            let likes = parseInt(likesEl.textContent.replace(',', ''));
+            likes++;
+            likesEl.textContent = formatNumber(likes);
+            likesEl.style.transform = 'scale(1.2)';
+            setTimeout(() => likesEl.style.transform = 'scale(1)', 300);
+        });
+
+        // Event listeners
+        video.addEventListener('click', togglePlay);
+        video.addEventListener('timeupdate', updateProgress);
         video.addEventListener('loadedmetadata', function() {
-            durationDisplay.textContent = formatTime(video.duration);
+            durationEl.textContent = formatTime(video.duration);
             updateProgress();
         });
-        
-        // Update progress as video plays
-        video.addEventListener('timeupdate', updateProgress);
-        
-        // Event listeners for buttons
-        playPauseBtn.addEventListener('click', togglePlayPause);
-        playBtn.addEventListener('click', playVideo);
-        pauseBtn.addEventListener('click', pauseVideo);
-        restartBtn.addEventListener('click', restartVideo);
-        muteBtn.addEventListener('click', toggleMute);
-        speedBtn.addEventListener('click', changeSpeed);
-        fullscreenBtn.addEventListener('click', toggleFullscreen);
-        progressContainer.addEventListener('click', setProgress);
-        volumeSlider.addEventListener('click', setVolume);
-        
-        // Play/Pause when clicking on video
-        video.addEventListener('click', togglePlayPause);
-        
-        // Update play/pause button when video ends
         video.addEventListener('ended', function() {
             playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            playBtn.querySelector('i').className = 'fas fa-play';
             playBtn.innerHTML = '<i class="fas fa-play"></i> Play';
-        });
-        
-        // Simulate view count increase
-        setTimeout(() => {
-            let views = parseInt(viewCount.textContent.replace(',', ''));
-            views += Math.floor(Math.random() * 10) + 1;
-            viewCount.textContent = views.toLocaleString();
-        }, 3000);
-        
-        // Like button functionality
-        likeCount.addEventListener('click', function() {
-            let likes = parseInt(likeCount.textContent);
-            likes++;
-            likeCount.textContent = likes;
+            isPlaying = false;
             
-            // Add animation
-            likeCount.style.transform = 'scale(1.5)';
-            setTimeout(() => {
-                likeCount.style.transform = 'scale(1)';
-            }, 300);
+            // Increase views when video ends
+            updateViews();
         });
-        
-        // Check if thumbnail loads
-        video.addEventListener('error', function(e) {
-            console.log('Video error:', e);
-            // Set a fallback background color
-            document.querySelector('.video-container').style.background = 'linear-gradient(135deg, #333, #000)';
+
+        playPauseBtn.addEventListener('click', togglePlay);
+        playBtn.addEventListener('click', playVideo);
+        pauseBtn.addEventListener('click', pauseVideo);
+        speedBtn.addEventListener('click', changeSpeed);
+        fullBtn.addEventListener('click', toggleFullscreen);
+        progressContainer.addEventListener('click', setProgress);
+        volumeBtn.addEventListener('click', toggleMute);
+        volumeSlider.addEventListener('click', setVolume);
+
+        // Start auto views increment
+        startViewsAutoIncrement();
+
+        // Also increase views on various interactions
+        video.addEventListener('play', function() {
+            // Sometimes increase views when video starts playing
+            if (Math.random() > 0.5) {
+                setTimeout(updateViews, 2000);
+            }
         });
-        
-        // Check if video loads
-        video.addEventListener('loadeddata', function() {
-            console.log('Video loaded successfully');
+
+        // Increase views when user interacts with controls
+        const interactiveElements = [playBtn, pauseBtn, speedBtn, fullBtn, progressContainer];
+        interactiveElements.forEach(el => {
+            el.addEventListener('click', function() {
+                // 20% chance to increase views on interaction
+                if (Math.random() > 0.8) {
+                    setTimeout(updateViews, 500);
+                }
+            });
         });
     </script>
 </body>
-    </html>
+</html>
